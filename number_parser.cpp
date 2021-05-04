@@ -18,13 +18,13 @@
       return parsedResult;
     }
     static double parseDouble(string text){
-      const string doubleRegEx = "(\\+|-)[0-9]*(\\.)([0-9]*)$";
+      const string doubleRegEx = "^[1-9]\\d*(\\.\\d+)?$";
       double result;
-      int integerPart = parseInt(text);
       //Get the decimal part
       try{
         //Use regex to validate that it is a decimal number
         if(regex_match(text,regex(doubleRegEx))){
+          int integerPart = parseInt(text);
           //Cut the part where there are decimals
           int whereIsThePoint = text.find(".");
           string decimalSection = text.substr(whereIsThePoint + 1,text.length());
@@ -46,6 +46,7 @@
       }catch(...){
         result = 0;
       }
+      cout << result << endl;
       return result;
     }
   }
